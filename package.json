@@ -1,7 +1,7 @@
 {
   "name": "prismalauncher",
-  "version": "0.0.2",
-  "productName": "Prisma Launcher",
+  "version": "0.0.3",
+  "productName": "PrismaLauncher",
   "description": "Un launcher minecraft moddé",
   "author": "MCunity",
   "license": "UNLICENSED",
