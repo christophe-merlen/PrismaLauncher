@@ -10,7 +10,7 @@ const { LoggerUtil } = require('helios-core')
 
 const logger = LoggerUtil.getLogger('Preloader')
 
-logger.info('Loading..')
+logger.info('Chargement..')
 
 // Load ConfigManager
 ConfigManager.load()
@@ -23,7 +23,7 @@ function onDistroLoad(data){
         
         // Resolve the selected server if its value has yet to be set.
         if(ConfigManager.getSelectedServer() == null || data.getServer(ConfigManager.getSelectedServer()) == null){
-            logger.info('Determining default selected server..')
+            logger.info('Détermination du serveur sélectionné par défaut..')
             ConfigManager.setSelectedServer(data.getMainServer().getID())
             ConfigManager.save()
         }
@@ -33,26 +33,26 @@ function onDistroLoad(data){
 
 // Ensure Distribution is downloaded and cached.
 DistroManager.pullRemote().then((data) => {
-    logger.info('Loaded distribution index.')
+    logger.info('Indice de distribution chargé.')
 
     onDistroLoad(data)
 
 }).catch((err) => {
-    logger.info('Failed to load distribution index.')
+    logger.info('Échec du chargement de l\'index de distribution.')
     logger.error(err)
 
-    logger.info('Attempting to load an older version of the distribution index.')
+    logger.info('Tentative de chargement d\'une ancienne version de l\'index de distribution.')
     // Try getting a local copy, better than nothing.
     DistroManager.pullLocal().then((data) => {
-        logger.info('Successfully loaded an older version of the distribution index.')
+        logger.info('Le chargement d\'une ancienne version de l\'index de distribution a réussi.')
 
         onDistroLoad(data)
 
 
     }).catch((err) => {
 
-        logger.info('Failed to load an older version of the distribution index.')
-        logger.info('Application cannot run.')
+        logger.info('Échec du chargement d\'une ancienne version de l\'index de distribution.')
+        logger.info('L\'application ne peut pas s\'exécuter.')
         logger.error(err)
 
         onDistroLoad(null)
@@ -64,8 +64,8 @@ DistroManager.pullRemote().then((data) => {
 // Clean up temp dir incase previous launches ended unexpectedly. 
 fs.remove(path.join(os.tmpdir(), ConfigManager.getTempNativeFolder()), (err) => {
     if(err){
-        logger.warn('Error while cleaning natives directory', err)
+        logger.warn('Erreur lors du nettoyage du répertoire des natifs', err)
     } else {
-        logger.info('Cleaned natives directory.')
+        logger.info('Répertoire des natifs nettoyé.')
     }
 })

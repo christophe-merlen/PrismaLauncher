@@ -186,7 +186,7 @@ class Util {
             return false
 
         } catch(err) {
-            throw new Error('Forge version is complex (changed).. launcher requires a patch.')
+            throw new Error('La version de Forge est complexe (modifiée). Le lanceur nécessite un correctif.')
         }
     }
 

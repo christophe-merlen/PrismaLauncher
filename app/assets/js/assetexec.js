@@ -1,7 +1,7 @@
 let target = require('./assetguard')[process.argv[2]]
 if(target == null){
     process.send({context: 'error', data: null, error: 'Invalid class name'})
-    console.error('Invalid class name passed to argv[2], cannot continue.')
+    console.error('Nom de classe non valide transmis à argv[2], impossible de continuer.')
     process.exit(1)
 }
 let tracker = new target(...(process.argv.splice(3)))
@@ -10,7 +10,7 @@ const { LoggerUtil } = require('helios-core')
 const logger = LoggerUtil.getLogger('AssetExec')
 
 //const tracker = new AssetGuard(process.argv[2], process.argv[3])
-logger.info('AssetExec Started')
+logger.info('AssetExec démarré')
 
 // Temporary for debug purposes.
 process.on('unhandledRejection', r => console.log(r))

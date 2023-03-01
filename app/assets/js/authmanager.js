@@ -172,11 +172,11 @@ exports.removeMojangAccount = async function(uuid){
             ConfigManager.save()
             return Promise.resolve()
         } else {
-            log.error('Error while removing account', response.error)
+            log.error('Erreur lors de la suppression du compte', response.error)
             return Promise.reject(response.error)
         }
     } catch (err){
-        log.error('Error while removing account', err)
+        log.error('Erreur lors de la suppression du compte', err)
         return Promise.reject(err)
     }
 }
@@ -194,7 +194,7 @@ exports.removeMicrosoftAccount = async function(uuid){
         ConfigManager.save()
         return Promise.resolve()
     } catch (err){
-        log.error('Error while removing account', err)
+        log.error('Erreur lors de la suppression du compte', err)
         return Promise.reject(err)
     }
 }
@@ -220,14 +220,14 @@ async function validateSelectedMojangAccount(){
                 ConfigManager.updateMojangAuthAccount(current.uuid, session.accessToken)
                 ConfigManager.save()
             } else {
-                log.error('Error while validating selected profile:', refreshResponse.error)
-                log.info('Account access token is invalid.')
+                log.error('Erreur lors de la validation du profil sélectionné :', refreshResponse.error)
+                log.info('Le jeton d\'accès au compte n\'est pas valide.')
                 return false
             }
-            log.info('Account access token validated.')
+            log.info('Jeton d\'accès au compte validé.')
             return true
         } else {
-            log.info('Account access token validated.')
+            log.info('Jeton d\'accès au compte validé.')
             return true
         }
     }

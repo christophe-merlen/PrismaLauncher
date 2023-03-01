@@ -173,7 +173,7 @@ class Module {
 
         } catch (err) {
             // Improper identifier
-            logger.error('Improper ID for module', this.identifier, err)
+            logger.error('ID incorrect pour le module', this.identifier, err)
         }
     }
 
@@ -601,10 +601,10 @@ exports.pullLocal = function(){
 
 exports.setDevMode = function(value){
     if(value){
-        logger.info('Developer mode enabled.')
-        logger.info('If you don\'t know what that means, revert immediately.')
+        logger.info('Mode développeur activé.')
+        logger.info('Si vous ne savez pas ce que cela signifie, désactiver le immédiatement.')
     } else {
-        logger.info('Developer mode disabled.')
+        logger.info('Mode développeur désactivé.')
     }
     DEV_MODE = value
 }

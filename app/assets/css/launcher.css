@@ -2818,8 +2818,7 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 20px;
 }
 #newsErrorLoading {
-    display: flex;
-    width: 168.92px;
+    font-size: 20px;
 }
 #nELoadSpan {
     white-space: pre;

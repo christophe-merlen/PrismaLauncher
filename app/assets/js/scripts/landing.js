@@ -100,7 +100,7 @@ document.getElementById('launch_button').addEventListener('click', function(e){
 
         const jg = new JavaGuard(mcVersion)
         jg._validateJavaBinary(jExe).then((v) => {
-            loggerLanding.info('Java version meta', v)
+            loggerLanding.info('Méta version Java', v)
             if(v.valid){
                 dlAsync()
             } else {
@@ -270,7 +270,7 @@ function showLaunchFailure(title, desc){
     setOverlayContent(
         title,
         desc,
-        'Okay'
+        'D\'accord'
     )
     setOverlayHandler(null)
     toggleOverlay(true)
@@ -635,9 +635,9 @@ function dlAsync(login = true){
 
             // If these properties are not defined it's likely an error.
             if(m.result.forgeData == null || m.result.versionData == null){
-                loggerLaunchSuite.error('Error during validation:', m.result)
+                loggerLaunchSuite.error('Erreur lors de la validation :', m.result)
 
-                loggerLaunchSuite.error('Error during launch', m.result.error)
+                loggerLaunchSuite.error('Erreur lors du lancement', m.result.error)
                 showLaunchFailure('Erreur lors du lancement', 'Veuillez vérifier la console (CTRL + Maj + i) pour plus de détails.')
 
                 allGood = false
@@ -648,7 +648,7 @@ function dlAsync(login = true){
 
             if(login && allGood) {
                 const authUser = ConfigManager.getSelectedAccount()
-                loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
+                loggerLaunchSuite.info(`Envoi du compte sélectionné (${authUser.displayName}) à ProcessBuilder.`)
                 let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
                 setLaunchDetails('Lancement du jeu..')
 
@@ -685,15 +685,15 @@ function dlAsync(login = true){
                 const gameStateChange = function(data){
                     data = data.trim()
                     if(SERVER_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Exploring the Realm!')
+                        DiscordWrapper.updateDetails('Exploration des Realm!')
                     } else if(GAME_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Sailing to Westeros!')
+                        DiscordWrapper.updateDetails('Navigation vers Prisma!')
                     }
                 }
 
                 const gameErrorListener = function(data){
                     data = data.trim()
-                    if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
+                    if(data.indexOf('Impossible de trouver ou de charger la classe principale net.minecraft.launchwrapper.Launch') > -1){
                         loggerLaunchSuite.error('Le lancement du jeu a échoué, LaunchWrapper n\'a pas été téléchargé correctement.')
                         showLaunchFailure('Erreur lors du lancement', 'Le fichier principal, LaunchWrapper, n\'a pas pu être téléchargé correctement. Par conséquent, le jeu ne peut pas se lancer.<br><br>Pour résoudre ce problème, désactivez temporairement votre logiciel antivirus et relancez le jeu.<br><br>Si vous avez le temps, veuillez <a href="https://github.com/christophe-merlen/PrismaLauncher/pulls">soumettre un problème</a> et dites-nous quel logiciel antivirus vous utilisez. Nous allons les contacter et essayer d\'arranger les choses.')
                     }
@@ -724,7 +724,7 @@ function dlAsync(login = true){
 
                 } catch(err) {
 
-                    loggerLaunchSuite.error('Error during launch', err)
+                    loggerLaunchSuite.error('Erreur lors du lancement', err)
                     showLaunchFailure('Erreur lors du lancement', 'Veuillez vérifier la console (CTRL + Maj + i) pour plus de détails.')
 
                 }
@@ -866,7 +866,7 @@ let newsLoadingListener = null
  */
 function setNewsLoading(val){
     if(val){
-        const nLStr = 'Checking for News'
+        const nLStr = 'Vérification des actualités'
         let dotStr = '..'
         nELoadSpan.innerHTML = nLStr + dotStr
         newsLoadingListener = setInterval(() => {
