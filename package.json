@@ -53,8 +53,5 @@
     "type": "git",
     "url": "git+https://github.com/christophe-merlen/PrismaLauncher.git"
   },
-  "directories": {
-    "doc": "docs"
-  },
   "keywords": []
 }
